@@ -20,6 +20,9 @@ export class HeroesComponent implements OnInit {
   getHeroes(): void {
     this.heroService.getHeroesByMock().subscribe(data => {
       this.heroes = data;
+      console.log(this.heroes);
+      console.log('****');
+      console.log(this.heroes[0]);
     });
     // this.heroService.getHeroes().then((heroes) => {
     //   console.log(heroes);

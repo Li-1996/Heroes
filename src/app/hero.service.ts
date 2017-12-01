@@ -18,7 +18,7 @@ export class HeroService {
    * @returns {Observable<any>}
    */
   getHeroesByMock(): Observable<any> {
-    return this.dataService.getData('mock/heroes.json', true);
+    return this.dataService.getData('./mock/heroes.json', true);
   }
 
   getHeroes(): Promise<Hero[]> {
