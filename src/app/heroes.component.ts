@@ -18,7 +18,15 @@ export class HeroesComponent implements OnInit {
     private heroService: HeroService) { }
 
   getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    this.heroService.getHeroesByMock().subscribe(data => {
+      this.heroes = data;
+    });
+    // this.heroService.getHeroes().then((heroes) => {
+    //   console.log(heroes);
+    //   this.heroes = heroes;
+    //   console.log('*****');
+    //   console.log(this.heroes);
+    // });
   }
 
   ngOnInit(): void {
