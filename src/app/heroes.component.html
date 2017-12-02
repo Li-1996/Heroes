@@ -1,14 +1,32 @@
 <h2>My Heroes</h2>
-<ul class="heroes">
+<!--<ul class="heroes">
   <li *ngFor="let hero of heroes"
       [class.selected]="hero === selectedHero"
       (click)="onSelect(hero)">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}{{hero.age}}{{hero.address}}
-  </li>
-</ul>
+      -->
+<nz-table>
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>Id</span></th>
+    <th nz-th><span>Name</span></th>
+    <th nz-th><span>Age</span></th>
+    <th nz-th><span>Address</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let hero of heroes">
+    <td nz-td>{{hero.id}}</td>
+    <td nz-td>{{hero.name}}</td>
+    <td nz-td>{{hero.age}}</td>
+    <td nz-td>{{hero.address}}</td>
+    <button nz-button ng-click="Shanchu(hero.id)">
+      <span>删除</span>
+    </button>
+  </tr>
+  </tbody>
+</nz-table>
 <div *ngIf="selectedHero">
   <h2>
     {{selectedHero.name | uppercase}} is my hero
   </h2>
-  <button (click)="gotoDetail()">View Details</button>
 </div>
