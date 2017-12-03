@@ -11,6 +11,7 @@ import { HeroService } from './hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+  id: any;
   selectedHero: Hero;
 
   constructor(
@@ -23,10 +24,16 @@ export class HeroesComponent implements OnInit {
     });
   }
 /*
+* 删除*/
   Shanchu() {
-    this.heroService.Delete(this.)
+    this.heroService.Delete(this.id).subscribe(data => {
+      if (data) {
+        this.id = data.id;
+        this.getHeroes();
+      }
+    });
   }
-  */
+
 
   ngOnInit(): void {
     this.getHeroes();

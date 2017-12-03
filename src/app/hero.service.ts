@@ -23,7 +23,7 @@ export class HeroService {
    * @return {observable<any>}
    */
   Delete(id: any): Observable<any> {
-    return this.dataService.getData('./mock/heroes.json', true);
+    return this.dataService.getData('./mock/heroes.json', id);
   }
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
