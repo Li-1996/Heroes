@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
-import {DataService} from './services/data.service';
+import {DataService} from '../services/data.service';
 import {Observable} from 'rxjs/Observable';
-import {observableToBeFn} from 'rxjs/testing/TestScheduler';
+
 
 @Injectable()
 export class HeroService {
@@ -17,6 +17,12 @@ export class HeroService {
    */
   getHeroesByMock(): Observable<any> {
     return this.dataService.getData('./mock/heroes.json', true);
+  }
+  /**
+  * 创建
+   * */
+create(form: any): Observable<any> {
+  return this.dataService.getData('./mock/heroes.json', form);
   }
   /*** 删除
    * @param id

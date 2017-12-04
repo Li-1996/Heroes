@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'my-heroes',
@@ -11,8 +12,8 @@ import { HeroService } from './hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  id: any;
-  selectedHero: Hero;
+  form: Hero = new Hero();
+  validateForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -23,23 +24,23 @@ export class HeroesComponent implements OnInit {
       this.heroes = data;
     });
   }
-/*
-* 删除*/
-  Shanchu() {
-    this.heroService.Delete(this.id).subscribe(data => {
-      if (data) {
-        this.id = data.id;
-        this.getHeroes();
-      }
+  /*
+  * 创建
+   */
+  add(): void {
+    this.heroService.create(this.form).subscribe(form => {
+      this.heroes.push(this.form);
     });
   }
-
-
+/*
+* 删除
+*/
+  Delete(hero: Hero): void {
+    this.heroService.Delete(hero.id).subscribe(() => {
+        this.heroes = this.heroes.filter(h => h !== hero);
+      });
+  }
   ngOnInit(): void {
     this.getHeroes();
-  }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
   }
 }
